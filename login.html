@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Login</h1>
+
+<input type="text" name="username">
+
+<input type="text" name="password">
+
+<button class="btn loginBtn" onclick="loginAjax()">login</button>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+
+    function loginAjax() {
+
+        const param = {userId:"user55", password:"1111"}
+
+        axios.post("http://localhost:8080/jsonApiLogin",param).then(response => {
+
+            console.log(response)
+            console.log(response.data)
+
+            //localstorage에 문자열로 저장
+            localStorage.setItem("accessToken", JSON.stringify(response.data))
+
+        }).catch(function(err){
+            console.log(err)
+            alert(err.message)
+        })
+
+    }
+
+</script>
+
+</body>
+</html>
